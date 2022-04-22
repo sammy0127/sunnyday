@@ -8,7 +8,7 @@ setup(
     description='Weather Forecast Data',
     author='Sam Eads',
     author_email='sam@unusualconsultants.com',
-    url='www.unusualconsultants.com',
+    url='sam.unusualconsultants.com',
     keywords=['weather', 'forecast', 'openweather'],
     install_requires=['requests',
                       ],
