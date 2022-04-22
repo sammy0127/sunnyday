@@ -17,12 +17,12 @@ class Weather:
         else:
             raise TypeError("object instantiation requires a city, or lat/lon attribute")
 
-        base_url += "&appid={}&units=imperial".format(self.apikey)
+        base_url += f"&appid={self.apikey}&units=imperial"
         r = requests.get(base_url)
         self.forecast = r.json()
 
-        if self.forecast['cod'] == '404':
-            raise LookupError("api response returned no data, city or lat/long values return no result")
+        if self.forecast['cod'] != '200':
+            raise ValueError(f"http Response object yields: {self.forecast['cod']}, {self.forecast['message']}")
 
     def next_12h(self):
         return self.forecast['list'][:4]
@@ -37,7 +37,7 @@ class Weather:
 
 
 if __name__ == '__main__':
-    forecast = Weather(api_key, 'Nashville')
+    forecast = Weather(api_key, 'Chumbawumba')
     # print(forecast.next_12h())
     # forecast.next_12h_simplified()
     print(forecast.next_12h_simplified())
